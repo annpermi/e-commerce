@@ -10,19 +10,18 @@ function Product({product}) {
 
     return (
         <Card className={classes.root}>
-            <CardMedia className={classes.media} image={product.image} title={product.title}/>
+            <CardMedia className={classes.media} image={product.media.source} title={product.name}/>
             <CardContent>
                 <div className={classes.CardContent}>
                     <Typography variant='h5' gutterBottom>
                         {product.name}
                     </Typography>
                     <Typography variant='h5'>
-                        {product.price}
+                        {product.price.formatted_with_symbol}
                     </Typography>
                 </div>
-                <Typography variant='body2' color='textSecondary'>
-                        {product.description}
-                </Typography>
+        {/* remove <p></p>  add this dangerouslySetInnerHTML={{ __html: product.description}}*/}
+                <Typography dangerouslySetInnerHTML={{ __html: product.description}} variant='body2' color='textSecondary'/>
             </CardContent>
             <CardActions disableSpacing className={classes.cardActions}>
                 <IconButton aria-label='Add to Cart'>
