@@ -9,7 +9,6 @@ const products = [
 ]
 const Products = ({products, onAddToCart}) => {
     const classes = useStyles();
-    console.log(products)
 
     return (
         <main>

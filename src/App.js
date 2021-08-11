@@ -12,7 +12,6 @@ function App() {
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
-
     setProducts(data)
   }
 
@@ -32,13 +31,11 @@ function App() {
     fetchProducts();
     fetchCart()
   }, [])
-  
-  console.log(cart)
 
   return (
     <div>
       <Navbar totalItems={cart.total_items} />
-      {/* <Products products={products} onAddToCart={handleAddToCart}/> */}
+      <Products products={products} onAddToCart={handleAddToCart}/>
       <Cart cart={cart}/>
     </div>
   );
