@@ -1,11 +1,12 @@
 import React from 'react';
 import { Container, Typography, Button, Grid } from '@material-ui/core';
-
+import CartItem from './cartItem/CartItem';
 
 import useStyles from './styles';
 
 const Cart = ({cart}) => {
     const classes = useStyles();
+    console.log(cart, 'cart')
     // const cart = props.cart || {};
     // const {line_items, subtotal} = cart;
     // if (!line_items || !subtotal) return null;
@@ -17,19 +18,19 @@ const Cart = ({cart}) => {
         <Typography variant='subtitle1'>You have no items in your shopping cart, start adding some!</Typography>
     };
 
-    const FilledCart = () => {
+    const FilledCart = () => (
         <>
             <Grid container spacing={3}>
                 {cart.line_items && cart.line_items.map((item)=> (
                     <Grid item xs={12} sm={4} key={item.id}>
-                        {/* <CartItem/> */}
-                        <div>{item.name}</div>
+                        <CartItem item={item}/>
+                        {/* <div>{item.name}</div> */}
                     </Grid>
                 ))}
             </Grid>
             <div className={classes.cardDetails}>
                     <Typography variant='h4'>
-                        {/* Subtotal: {subtotal.formatted_with_symbol} */}
+                        Subtotal: {cart.subtotal.formatted_with_symbol}
                     </Typography>
                     <div>
                         <Button className={classes.emptyButton} size='large' type='button' variant='contained' color='secondary'>Empty Cart</Button>
@@ -37,14 +38,17 @@ const Cart = ({cart}) => {
                     </div>
             </div>
         </>
-    }
+    )
+
+    if(!cart.line_items) return 'Loading...';
 
     return (
         <Container>
             <div className={classes.toolbar}/>
-            <Typography className={classes.title} variant='h3'>Your Shopping Cart</Typography>
+            <Typography className={classes.title} variant='h3' gutterBottom>Your Shopping Cart</Typography>
             {/* Empty or not cart */}
             { isEmpty ? <EmptyCard /> : <FilledCart/>}
+            {/* !cart.line_items.length */}
             {/* { isEmpty && <EmptyCard /> } */}
         </Container>
     )
