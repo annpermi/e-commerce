@@ -5,6 +5,8 @@ import { Products, Navbar, Cart } from './components';
 import { commerce } from './lib/commerce';
 // import Products from './components/products/Products';
 // import Navbar from './components/navbar/Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -33,11 +35,19 @@ function App() {
   }, [])
 
   return (
-    <div>
-      <Navbar totalItems={cart.total_items} />
-      <Products products={products} onAddToCart={handleAddToCart}/>
-      <Cart cart={cart}/>
-    </div>
+    <Router>
+      <div>
+        <Navbar totalItems={cart.total_items} />
+        <Switch>
+          <Route exact path='/'>
+            <Products products={products} onAddToCart={handleAddToCart}/>
+          </Route>
+          <Route exact patch='/cart'>
+            <Cart cart={cart}/>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
