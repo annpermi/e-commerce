@@ -6,6 +6,8 @@
 
 > Material UI
 
+> React Hook Form
+
 > Stripe Payment Method
 
 > Email Confirmation
