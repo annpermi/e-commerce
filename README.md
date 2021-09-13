@@ -1,4 +1,4 @@
-# Anna's eCommerce Shop
+# eCommerce Shop
 
 ## Fully functional eCommerce application using commerce.js.
 
